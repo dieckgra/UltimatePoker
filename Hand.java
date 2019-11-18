@@ -10,32 +10,32 @@ public class Hand {
 	 * Let's start with Poker and Black Jack.
 	 * 
 	 * For poker, rules need to be made regarding the value of different hands.
-	 * 1 point: high card
-	 * 2 points: a pair
-	 * 3 points: 3 of a kind
-	 * 4 points: 2 pair
-	 * 5 points: a flush (having all the same suit)
-	 * 6 points: full house (a pair and three of a kind)
-	 * 7 points: a straight (having numbers following a consecutive order i.e. 2,3,4,5,6)
-	 * 8 points: 4 of a kind
-	 * 9 points: a straight flush (having a straight all in the same suit)
-	 * 10 points: a royal straight flush (having a straight in the same suit of specifically 10, J, Q, K, A)
+	 * 100 point: high card
+	 * 200 points: a pair
+	 * 300 points: 3 of a kind
+	 * 400 points: 2 pair
+	 * 500 points: a flush (having all the same suit)
+	 * 600 points: full house (a pair and three of a kind)
+	 * 700 points: a straight (having numbers following a consecutive order i.e. 2,3,4,5,6)
+	 * 800 points: 4 of a kind
+	 * 900 points: a straight flush (having a straight all in the same suit)
+	 * 1000 points: a royal straight flush (having a straight in the same suit of specifically 10, J, Q, K, A)
 	 * 
 	 * If players have the same hand as each other, the next tie breaker will be the highest card.
 	 * This will be a fraction of a point.
-	 * 0.02 points for a 2
-	 * 0.03 points for a 3
-	 * 0.04 points for a 4
-	 * 0.05 points for a 5
-	 * 0.06 points for a 6
-	 * 0.07 points for a 7
-	 * 0.08 points for a 8
-	 * 0.09 points for a 9
-	 * 0.10 points for a 10
-	 * 0.11 points for a J
-	 * 0.12 points for a Q
-	 * 0.13 points for a K
-	 * 0.14 points for an A
+	 * 2 points for a 2
+	 * 3 points for a 3
+	 * 4 points for a 4
+	 * 5 points for a 5
+	 * 6 points for a 6
+	 * 7 points for a 7
+	 * 8 points for a 8
+	 * 9 points for a 9
+	 * 10 points for a 10
+	 * 11 points for a J
+	 * 12 points for a Q
+	 * 13 points for a K
+	 * 14 points for an A
 	 * 
 	 * If players still have the same hand and even the same high card, the win will be suit of the highest card
 	 * 0.001 for clubs
@@ -66,7 +66,12 @@ public class Hand {
 	void method(int game) {
 		if(game==1) { // game selection (black jack "1" or other game)
 			Card[] hand = new Card[2];
-			
+		} else if(game==2) { // game selection (5 card draw "2" or other game)
+			Card[] hand = new Card[5];
+		} else if(game==3) { // game selection (7 card stud "3" or other game)
+			Card[] hand = new Card[7];
+		} else if(game==4) { // game selection (texas hold em "4" or other game) Have to double check rules on dealing
+			Card[] hand = new Card[3];
 		}
 	}
 

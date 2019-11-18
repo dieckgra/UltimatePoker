@@ -3,7 +3,7 @@ public class Card {
 	
 	// Member variables
 	public int cardNum;
-	private int suit;
+	public int suit;
 	
 	// This is a constructor for the card.
 	public Card(int c,int s) {

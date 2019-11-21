@@ -1,47 +1,60 @@
+import java.util.ArrayList;
 
 public class Hand {
 	String name = "";
+	public ArrayList<Card> hand;
+	Hand() {
+		hand = new ArrayList<Card>();
+		
+	}
+	
+	void print() {
+		for(int i=0; i<hand.size(); i++) {
+			hand.get(i).print();
+		}
+	}
+	void print(int i) {
+		hand.get(i).print();
+	}
+	int size() {
+		return hand.size();
+	}
+	void add(Card j) {
+		hand.add(j);
+	}
+	void set(int i, Card j) {
+		hand.set(i, j);
+	}
+	Card get(int i) {
+		return hand.get(i);
+	}
+	int getCardNum(int i) {
+		int cardNum = hand.get(i).cardNum;
+		return cardNum;
+	}
+	int getCardSuit(int i) {
+		int cardSuit = hand.get(i).suit;
+		return cardSuit;
+	}
+	void remove(int i) {
+		hand.remove(i);
+	}
+	void remove() {
+		for(int i=0; i<hand.size(); i++) {
+			hand.remove(i);
+		}
+	}
+	void clear() {
+		hand.clear();
+	}
 	/*
 	 * I wish to deal a hand to players for various games.
 	 * This could include blackjack, 5-card poker and 7-card stud, Texas Hold'em, and more.
 	 * 
 	 */
+	
 	/*
 	 * Let's start with Poker and Black Jack.
-	 * 
-	 * For poker, rules need to be made regarding the value of different hands.
-	 * 100 point: high card
-	 * 200 points: a pair
-	 * 300 points: 3 of a kind
-	 * 400 points: 2 pair
-	 * 500 points: a flush (having all the same suit)
-	 * 600 points: full house (a pair and three of a kind)
-	 * 700 points: a straight (having numbers following a consecutive order i.e. 2,3,4,5,6)
-	 * 800 points: 4 of a kind
-	 * 900 points: a straight flush (having a straight all in the same suit)
-	 * 1000 points: a royal straight flush (having a straight in the same suit of specifically 10, J, Q, K, A)
-	 * 
-	 * If players have the same hand as each other, the next tie breaker will be the highest card.
-	 * This will be a fraction of a point.
-	 * 2 points for a 2
-	 * 3 points for a 3
-	 * 4 points for a 4
-	 * 5 points for a 5
-	 * 6 points for a 6
-	 * 7 points for a 7
-	 * 8 points for a 8
-	 * 9 points for a 9
-	 * 10 points for a 10
-	 * 11 points for a J
-	 * 12 points for a Q
-	 * 13 points for a K
-	 * 14 points for an A
-	 * 
-	 * If players still have the same hand and even the same high card, the win will be suit of the highest card
-	 * 0.001 for clubs
-	 * 0.002 for hearts
-	 * 0.003 for diamonds
-	 * 0.004 for spades
 	 * 
 	 * The total points for a hand will be added up to determine a winner.
 	 * 
@@ -64,15 +77,27 @@ public class Hand {
 	 * 
 	 */
 	void method(int game) {
-		if(game==1) { // game selection (black jack "1" or other game)
+		if(game==1) { // game selection (black jack "1")
 			Card[] hand = new Card[2];
-		} else if(game==2) { // game selection (5 card draw "2" or other game)
+			blackJackHand();
+		} else if(game==2) { // game selection (5 card draw "2")
 			Card[] hand = new Card[5];
+			fiveCardHand();
 		} else if(game==3) { // game selection (7 card stud "3" or other game)
 			Card[] hand = new Card[7];
 		} else if(game==4) { // game selection (texas hold em "4" or other game) Have to double check rules on dealing
 			Card[] hand = new Card[3];
 		}
+	}
+	
+	void blackJackHand() {
+		
+	}
+	
+	
+	
+	void fiveCardHand() {
+		
 	}
 
 	

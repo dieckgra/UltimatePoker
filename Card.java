@@ -10,6 +10,10 @@ public class Card {
 		cardNum = c;
 		suit = s;
 	}
+	public Card(boolean joker) {
+		cardNum = 0;
+		suit = 0;
+	}
 	
 	// This prints the card
 	public void print(){

@@ -26,33 +26,48 @@ public class BlackJack extends Game {
 			if(i%2==0) {
 				playerHand.add(deck1.get(i));
 				//deckPosition++;
-				System.out.println(deckPosition); // testing position and debugging
+				//System.out.println(deckPosition); // testing position and debugging
 			} else {
 				dealerHand.add(deck1.get(i));
-				deckPosition++;
-				System.out.println(deckPosition); // testing position and debugging
+				//deckPosition++;
+				//System.out.println(deckPosition); // testing position and debugging
 			}
+			deckPosition++;
+			System.out.println(deckPosition); // testing position and debugging
 		}
 
 		System.out.println("\n\nPlayer Hand: ");
 		int playerHandSum = 0;
+		int playerAces = 0;
 		playerHand.print();
 		for(int i=0; i<2; i++) {
 			if(playerHand.getCardNum(i)>=10) { playerHandSum += 10; } 
 			else if(playerHand.getCardNum(i)>=2) { playerHandSum += playerHand.getCardNum(i); } 
-			else { if(playerHandSum <= 10) { playerHandSum += 11; } else { playerHandSum += 1; } }
+			else { // must be an ace...
+				playerAces++;
+				if(playerHandSum <= 10) { playerHandSum += 11; } else { playerHandSum += 1; } 
+				}
 		}
 		System.out.println("Total is " + playerHandSum + "\n");
 		
 		System.out.println("Dealer Hand: ");
 		int dealerHandSum = 0;
-		dealerHand.print();
+
+		int[] cardSum = new int[2];
 		for(int i=0; i<2; i++) {
-			if(dealerHand.getCardNum(i)>=10) { dealerHandSum += 10; } 
-			else if(dealerHand.getCardNum(i)>=2) { dealerHandSum += dealerHand.getCardNum(i); } 
-			else { if(dealerHandSum <= 10) { dealerHandSum += 11; } else { dealerHandSum += 1; } }
+			if(dealerHand.getCardNum(i)>=10) { cardSum[i] = 10; dealerHandSum += cardSum[i]; } 
+			else if(dealerHand.getCardNum(i)>=2) { cardSum[i] = dealerHand.getCardNum(i); dealerHandSum += cardSum[i]; } 
+			else { if(dealerHandSum <= 10) { cardSum[i] = 11; dealerHandSum += cardSum[i]; } else { cardSum[i] = 1; dealerHandSum += cardSum[i]; } }
 		}
-		System.out.println("Total is " + dealerHandSum + "\n");
+		dealerHand.get(0).print();
+		if(dealerHandSum==21) { // Display the second card instead of hiding it if has "Black Jack!"
+			dealerHand.get(1).print(); 
+			System.out.println("Total is: " + dealerHandSum + "\n");
+		} else { // The second card... We will add its value to the dealer hand sum, but subtract it from what we print...
+			System.out.println("[[[FACE DOWN]]]"); 
+			System.out.println("Total is at least " + (dealerHandSum-cardSum[1]) + "\n");
+		}
+		
 		
 		boolean playersTurn = true;
 		if(dealerHandSum==21) { System.out.println("Black Jack!\nDealer Wins!"); playersTurn = false; } 
@@ -64,13 +79,15 @@ public class BlackJack extends Game {
 				hitOrStay = scanner.next();
 				
 				if(hitOrStay.contentEquals("h") || hitOrStay.contentEquals("hit") || hitOrStay.contentEquals("H")) {
-					System.out.println("The deck position variable is: " + deckPosition + ", but the array is length: " + playerHand.size());
+					//System.out.println("The deck position variable is: " + deckPosition + ", but the array is length: " + playerHand.size());
 					playerHand.add(deck1.get(deckPosition));
-					playerHand.print(deckPosition);
+					System.out.println("The player drew: ");
+					playerHand.print(playerHand.size()-1);
+					System.out.println("\nThe player\'s hand is now: ");
+					playerHand.print();
 					
-					if(playerHand.getCardNum(deckPosition)>=10) { playerHandSum += 10; } 
-					else if(playerHand.getCardNum(deckPosition)>=2) { playerHandSum += playerHand.getCardNum(deckPosition); } 
-					else { if(playerHandSum <= 10) { playerHandSum += 11; } else { playerHandSum += 1; } }
+					sort(playerHand);
+					playerHandSum = score(playerHand);
 					System.out.println("Total is: " + playerHandSum);
 					
 					deckPosition++;
@@ -79,22 +96,23 @@ public class BlackJack extends Game {
 					if(playerHandSum>21) { System.out.println("\nBUST!\nDealer Wins!"); playersTurn = false; }
 					
 				} else if(hitOrStay.contentEquals("s") || hitOrStay.contentEquals("stay") || hitOrStay.contentEquals("S")) {
-					System.out.println("Dealers turn");
+					System.out.println("Dealer\'s turn!\n\nDealer\'s hand: ");
+					dealerHand.print();
 					playersTurn = false;
 					if(dealerHandSum>=17) {
-						//System.out.println("Total is: " + dealerHandSum);
-						//if(dealerHandSum>21) { System.out.println("BUST!\nPlayer Wins!"); }
-						//if(dealerHandSum>=playerHandSum) { System.out.println("Dealer Wins!"); } 
-						//else { System.out.println("Player Wins!"); }
+						System.out.println("The dealer stays...");
 					}
 					
-					while(dealerHandSum<17) { //System.out.println("not yet added" + deckPosition);
-						dealerHand.add(deck1.deck[deckPosition]); //System.out.println("added" + deckPosition);
-						dealerHand.print(dealerHand.size()-1); //System.out.println("printed" + deckPosition);
-						if(dealerHand.getCardNum(dealerHand.size()-1)>=10) { dealerHandSum += 10; } 
-						else if(dealerHand.getCardNum(dealerHand.size()-1)>=2){ dealerHandSum += dealerHand.getCardNum(dealerHand.size()-1); } 
-						else { if(dealerHandSum <= 10) { dealerHandSum += 11; } else { dealerHandSum += 1; } }
+					while(dealerHandSum<17) { 
+						System.out.println("\nDealer hits and gets: ");
+						dealerHand.add(deck1.get(deckPosition)); 
+						dealerHand.print(dealerHand.size()-1); 
+						System.out.println("\nThe dealer\'s hand is now: ");
+						dealerHand.print();
 						
+						sort(dealerHand);
+						dealerHandSum = score(dealerHand);
+
 						deckPosition++;
 					}
 					System.out.println("Total is: " + dealerHandSum);
@@ -108,5 +126,34 @@ public class BlackJack extends Game {
 		playerHand.clear();
 		dealerHand.clear();
 	}
-	
+
+	public static void sort(Hand hand) {
+		Card tempCard = new Card(1,1);
+		for(int j=0; j<hand.size(); j++) {
+			for(int i=0; i<hand.size()-1; i++) {
+				if(hand.getCardNum(i) > hand.getCardNum(i+1)) {
+					tempCard = hand.get(i);
+					hand.set(i,hand.get(i+1));
+					hand.set(i+1, tempCard);
+				}
+			} 
+		}
+	}
+
+	public static int score(Hand hand) {
+		int handScore = 0;
+		for(int i=(hand.size()-1); i>=0; i--) {
+			if(hand.get(i).cardNum >= 10) { 
+				handScore += 10; 
+				}
+			else if(hand.get(i).cardNum >= 2) { 
+				handScore += hand.get(i).cardNum; 
+				}
+			else { // Must be an ace...
+				if(handScore > 10) { handScore += 1; } 
+				else { handScore += 11; } 
+			}
+		}
+		return handScore;
+	}
 }

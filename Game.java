@@ -4,7 +4,7 @@ public class Game {
 	static Hand dealerHand;
 	static Deck deck1;
 	Game() {
-		System.out.println("How many players do you want?  \nJust kidding you only get 1, unless I have time to make more");
+		//System.out.println("How many players do you want?  \nJust kidding you only get 1, unless I have time to make more");
 		playerHand = new Hand();
 		dealerHand = new Hand();
 		deck1 = new Deck();

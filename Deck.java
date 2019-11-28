@@ -5,9 +5,10 @@ public class Deck {
 	Card[] deck; // Make an array of cards called deck
 	
 	EZImage[][] cardImage;
-	//String suit;
+	String suit;
 	EZText[] cardNumI;
 	String num;
+	Card tempCard;
 	
 	Deck() {
 		deck = new Card[52];  // Assign 52 cards to deck
@@ -20,7 +21,7 @@ public class Deck {
 				// Make a card
 				Card aCard = new Card(c,s); // Make a new card with the suit and card number parameters
 				//System.out.println(c+" "+s);
-				//aCard.print();
+				aCard.print();
 				// Store the card in the deck.
 
 				deck[counter] = aCard;
@@ -85,13 +86,13 @@ public class Deck {
 		// Our random number generator
 		Random randomGenerator = new Random();
 		// Shuffle 300,000 times to ensure a good shuffle!
-		for (int shuffle = 0; shuffle < 300000; shuffle++) {
+		for (int shuffle=0; shuffle < 300000; shuffle++) {
 		// Iterate through each card in the deck
-			for (int i = 0; i<52; i++){
+			for (int i=0; i<52; i++){
 				// Use the random number generator to choose a card to swap with.
 				int j = randomGenerator.nextInt(52);
 				// Swap card i with card j in the deck
-				Card tempCard = deck[j];
+				tempCard = deck[j];
 				deck[j]=deck[i];
 				deck[i]=tempCard;
 			}

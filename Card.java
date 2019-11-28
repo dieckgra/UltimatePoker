@@ -2,11 +2,11 @@ import java.awt.Color;
 public class Card {
 	
 	// Member variables
-	public static int cardNum;
-	public static int suit;
-	public static EZImage cardImage;
-	public static String cardNumStr;
-	public static EZText cardNumEZ;
+	public int cardNum;
+	public int suit;
+	public EZImage cardImage;
+	public String cardNumStr;
+	public EZText cardNumEZ;
 	
 	// This is a constructor for the card.
 	public Card(int c,int s) {
@@ -32,7 +32,7 @@ public class Card {
 		if (suit == 4) System.out.println("Spades");
 	}
 	
-	public static void makeCardImage(int x, int y) {
+	public void makeCardImage(int x, int y) {
 		
 		int posX = x;
 		int posY = y;

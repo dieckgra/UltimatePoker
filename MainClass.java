@@ -14,7 +14,6 @@ public class MainClass {
 	static String gameSelection;
 	
 	public static void main(String[] args) {
-		
 		deck1.shuffle(); 
 		
 		// Now print out the new shuffled deck of cards.

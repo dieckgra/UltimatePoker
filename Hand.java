@@ -75,7 +75,7 @@ public class Hand {
 	 * 
 	 * We will first develop these games for the console, then later implement them in a GUI.
 	 * 
-	 */
+	 *
 	void method(int game) {
 		if(game==1) { // game selection (black jack "1")
 			Card[] hand = new Card[2];
@@ -89,6 +89,7 @@ public class Hand {
 			Card[] hand = new Card[3];
 		}
 	}
+	*/
 	
 	void blackJackHand() {
 		

@@ -1,24 +1,35 @@
+import java.awt.Color;
 import java.util.Random;
 
 public class Deck {
 	Card[] deck; // Make an array of cards called deck
 	
+	EZImage[][] cardImage;
+	//String suit;
+	EZText[] cardNumI;
+	String num;
+	
 	Deck() {
 		deck = new Card[52];  // Assign 52 cards to deck
-		
+
 		int counter = 0;
+		
 		for (int s = 1; s<=4; s++) { // Make 4 suits
 			for(int c=1; c<=13; c++){ // Make 13 cards per suit
+				num = Integer.toString(c);
 				// Make a card
 				Card aCard = new Card(c,s); // Make a new card with the suit and card number parameters
 				//System.out.println(c+" "+s);
 				//aCard.print();
 				// Store the card in the deck.
+
 				deck[counter] = aCard;
 				counter++;
 			}
 		}
 	}
+	
+	
 	
 	
 	/*
@@ -91,5 +102,23 @@ public class Deck {
 		return deck[i];
 	}
 	
+	void makeCards() {
+		cardImage = new EZImage[4][13];
+		//suit = new String[4];
+		//switch(suit) {
+			
+		//}
+			
+		//suit = "clubs.png";
+		//suit = "diamonds.png";
+		//suit = "hearts.png";
+		//suit = "spades.png";
+		cardNumI = new EZText[13];
+		
+		for(int i=0; i<1; i++) {
+			//cardImage[0][9] = EZ.addImage(suit, 100, 100);
+			//cardNumI[9] = EZ.addText(100, 100, num, Color.black, 50);
+		}
+	}
 	
 }

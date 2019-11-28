@@ -8,10 +8,14 @@ public class FiveCardDraw extends Game {
 	static boolean match01,match12,match23,match34,match02,match13,match24,match03,match14,match05;
 	static int handPoints, dealerPoints, playerPoints;
 	
+	
+	
 	FiveCardDraw() {
 		super();
 		fiveCardDraw();
 	}
+	
+	
 	
 	public static void dealFiveCardFirst() {
 		System.out.println("Dealing cards...");

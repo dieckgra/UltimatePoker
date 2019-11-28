@@ -11,6 +11,8 @@ public class MainClass {
 	static Hand playerHand = new Hand();
 	static Hand dealerHand = new Hand();
 	
+	static String gameSelection;
+	
 	public static void main(String[] args) {
 		
 		deck1.shuffle(); 
@@ -25,7 +27,7 @@ public class MainClass {
 		while(true) {
 			System.out.println("\nPlayer 1...\nType 1 to play Black Jack? \nType 2 to play Five Card Draw\ntype 3 to play Seven Card Stud\nType 4 to play Texas Hold\'em\n"
 					+ "Type 5 for the GUI menu\nType 6 for Settings\nType 7 for Instructions on How to Play\nType 0 to Quit");
-			String gameSelection = scanner.nextLine();
+			gameSelection = scanner.nextLine();
 			// 0 quits the program, 1 is black jack, 2 is 5-card poker, 3 is 7-card stud, 4 is Texas Hold'em, etc...
 			if(gameSelection.equals("0")) { System.exit(0); }
 			else if(gameSelection.equals("1")) {
@@ -56,12 +58,18 @@ public class MainClass {
 						else if(playAgain.equals("menu") || playAgain.equals("m") || playAgain.equals("M")) { break middleloop; }
 						else if(playAgain.equals("play") || playAgain.equals("p") || playAgain.equals("P")) { break; }
 						else { System.out.println("That was not a vaild entry"); }
-					}
+					} 
 				} 
 			}
 			else if(gameSelection.equals("3")) { SevenCardStud scs = new SevenCardStud(); }
 			else if(gameSelection.equals("4")) { TexasHoldem th = new TexasHoldem(); }
-			else if(gameSelection.equals("5")) {/* The tester GUI Menu will launch from selection 5 */ System.out.println("GUI Menu"); }
+			
+			else if(gameSelection.equals("5")) { 
+				/* The tester GUI Menu will launch from selection 5 */ 
+				System.out.println("GUI Menu"); 
+				Menu menu = new Menu(); 
+			} 
+			
 			else if(gameSelection.equals("6")) { System.out.println("Settings will be available soon"); }
 			else if(gameSelection.equals("7")) { Instructions instructions = new Instructions(); }
 			else { System.out.println("That is not a valid option."); } 

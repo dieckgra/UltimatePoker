@@ -12,21 +12,18 @@ public class FiveCardDraw extends Game {
 	
 	FiveCardDraw() {
 		super();
-		fiveCardDraw();
+		//fiveCardDraw();
 	}
 	
 	
 	
-	public static void dealFiveCardFirst() {
+	public void dealFiveCardFirst() {
 		System.out.println("Dealing cards...");
 		deck1.shuffle();
 		deck1.print();
-		//for(int i=0; i<10; i++) {
-		//	deck1.deck[i].print();
-		//}
 	}
 	
-	public static void sortFiveCards(Hand hand) {
+	public void sortFiveCards(Hand hand) {
 		Card tempCard = new Card(1,1);
 		for(int j=0; j<5; j++) {
 			for(int i=0; i<4; i++) {
@@ -39,7 +36,7 @@ public class FiveCardDraw extends Game {
 		}
 	}
 	
-	public static void rules(Hand hand) { // Determines the kind of hand that is held
+	public void rules(Hand hand) { // Determines the kind of hand that is held
 
 		// Let's create a rule for flushes that checks if all suits in a hand are equal
 		boolean isFlush = false;
@@ -126,7 +123,7 @@ public class FiveCardDraw extends Game {
 		
 	}
 
-	public static void DDS(Hand hand) { // DSS stands for Dealer Decision System
+	public void DDS(Hand hand) { // DSS stands for Dealer Decision System
 
 		/* Now we must handle the dealer's cards and make it smart
 		 * 
@@ -350,7 +347,7 @@ public class FiveCardDraw extends Game {
 		
 	}
 	
-	public static void scoring(Hand hand) { // Score based on value of the hand plus high cards
+	public void scoring(Hand hand) { // Score based on value of the hand plus high cards
 
 		/*
 		 * NOW WE SET UP OUR SCORING SYSTEM
@@ -517,7 +514,7 @@ public class FiveCardDraw extends Game {
 		
 	}
 	
-	public static void fiveCardDraw() {
+	public  void fiveCardDraw() {
 		// The game of 5 Card Draw Poker
 		dealFiveCardFirst();
 		//int j = 0;

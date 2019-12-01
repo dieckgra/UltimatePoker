@@ -7,7 +7,7 @@ public class MainClass {
 	static Scanner scanner = new Scanner(System.in);
 	//static Card[] deck = new Card[52];
 	static Deck deck1 = new Deck();
-	
+	public static Menu menu;
 	static Hand playerHand = new Hand();
 	static Hand dealerHand = new Hand();
 	
@@ -50,6 +50,7 @@ public class MainClass {
 					System.out.println("Let\'s play 5-card draw!"); 
 					deck1.shuffle();
 					FiveCardDraw fcd = new FiveCardDraw(); 
+					fcd.fiveCardDraw();
 					while(true) {
 						System.out.println("would you like to play again, go to menu or quit? \nType \"p\" for play again, \"m\" for menu, or \"q\" for quit...");
 						String playAgain = scanner.next();
@@ -66,7 +67,8 @@ public class MainClass {
 			else if(gameSelection.equals("5")) { 
 				/* The tester GUI Menu will launch from selection 5 */ 
 				System.out.println("GUI Menu"); 
-				Menu menu = new Menu(); 
+				menu = new Menu(); 
+				menu.callMenu();
 			} 
 			
 			else if(gameSelection.equals("6")) { System.out.println("Settings will be available soon"); }

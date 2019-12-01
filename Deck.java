@@ -6,9 +6,11 @@ public class Deck {
 	
 	EZImage[][] cardImage;
 	String suit;
-	EZText[] cardNumI;
+	EZText[][] cardNumI;
+	CardImage[][] deckImage;
 	String num;
 	Card tempCard;
+	EZImage[] facedown = new EZImage[5];
 	
 	Deck() {
 		deck = new Card[52];  // Assign 52 cards to deck
@@ -103,23 +105,59 @@ public class Deck {
 		return deck[i];
 	}
 	
-	void makeCards() {
+	/*
+	void makeCardImage() {
 		cardImage = new EZImage[4][13];
-		//suit = new String[4];
-		//switch(suit) {
+		switch(suit) {
 			
-		//}
+		}
 			
-		//suit = "clubs.png";
-		//suit = "diamonds.png";
-		//suit = "hearts.png";
-		//suit = "spades.png";
-		cardNumI = new EZText[13];
+		suit = "clubs.png";
+		suit = "diamonds.png";
+		suit = "hearts.png";
+		suit = "spades.png";
+		cardNumI = new EZText[4][13];
 		
 		for(int i=0; i<1; i++) {
-			//cardImage[0][9] = EZ.addImage(suit, 100, 100);
-			//cardNumI[9] = EZ.addText(100, 100, num, Color.black, 50);
+			for(int j=0; j<13; j++) {
+				cardImage[i][j] = EZ.addImage(suit, 100, 100);
+				cardNumI[i][j] = EZ.addText(100, 100, num, Color.black, 50);
+			}
 		}
 	}
+	*/
+	
+	
+	void makeDeckImage() {
+		deckImage = new CardImage[4][13];
+		for(int s=0; s<4; s++) {
+			for(int c=0; c<13; c++) {
+				deckImage[s][c] = new CardImage(s+1,c+1);
+			}
+		}
+	}
+	void hideDeckImage() {
+		for(int s=0; s<4; s++) {
+			for(int c=0; c<13; c++) {
+				deckImage[s][c].hideCardImage();
+			}
+		}
+	}
+	public void makeFaceDown() {
+		for(int i=0; i<5; i++) {
+			facedown[i] = EZ.addImage("facedowncard.png",-2000,-2000);
+		}
+	}
+	public void moveFaceDownFCD() {
+		for(int i=0; i<5; i++) {
+			facedown[i].translateTo(175+i*205,300);
+		}
+	}
+	public void hideFaceDown() {
+		for(int i=0; i<5; i++) {
+			facedown[i].translateTo(-2000,-2000);
+		}
+	}
+	
 	
 }

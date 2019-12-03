@@ -39,7 +39,6 @@ public class FiveCardDrawGUI extends GameGUI {
 			} else {
 				dealerHand.add(deck1.deck[i]);
 				//System.out.println("Dealer Hand: " + dealerHand.get(j).cardNum);
-				//j++;
 				deckPosition++;
 				System.out.println(deckPosition); // testing position and debugging
 			}

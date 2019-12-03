@@ -91,7 +91,13 @@ public class Hand {
 	}
 	*/
 	
-	void handImage() {
+	void blackJackHand() {
+		
+	}
+	
+	
+	
+	void fiveCardHand() {
 		
 	}
 

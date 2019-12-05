@@ -1,24 +1,38 @@
+import java.awt.Color;
 import java.util.Random;
 
 public class Deck {
 	Card[] deck; // Make an array of cards called deck
 	
+	EZImage[][] cardImage;
+	String suit;
+	EZText[][] cardNumI;
+	CardImage[][] deckImage;
+	String num;
+	Card tempCard;
+	EZImage[] facedown = new EZImage[5];
+	
 	Deck() {
 		deck = new Card[52];  // Assign 52 cards to deck
-		
+
 		int counter = 0;
+		
 		for (int s = 1; s<=4; s++) { // Make 4 suits
 			for(int c=1; c<=13; c++){ // Make 13 cards per suit
+				num = Integer.toString(c);
 				// Make a card
 				Card aCard = new Card(c,s); // Make a new card with the suit and card number parameters
 				//System.out.println(c+" "+s);
-				//aCard.print();
+				aCard.print();
 				// Store the card in the deck.
+
 				deck[counter] = aCard;
 				counter++;
 			}
 		}
 	}
+	
+	
 	
 	
 	/*
@@ -74,13 +88,13 @@ public class Deck {
 		// Our random number generator
 		Random randomGenerator = new Random();
 		// Shuffle 300,000 times to ensure a good shuffle!
-		for (int shuffle = 0; shuffle < 300000; shuffle++) {
+		for (int shuffle=0; shuffle < 300000; shuffle++) {
 		// Iterate through each card in the deck
-			for (int i = 0; i<52; i++){
+			for (int i=0; i<52; i++){
 				// Use the random number generator to choose a card to swap with.
 				int j = randomGenerator.nextInt(52);
 				// Swap card i with card j in the deck
-				Card tempCard = deck[j];
+				tempCard = deck[j];
 				deck[j]=deck[i];
 				deck[i]=tempCard;
 			}
@@ -89,6 +103,63 @@ public class Deck {
 	
 	Card get(int i) {
 		return deck[i];
+	}
+	
+	/*
+	void makeCardImage() {
+		cardImage = new EZImage[4][13];
+		switch(suit) {
+			
+		}
+			
+		suit = "clubs.png";
+		suit = "diamonds.png";
+		suit = "hearts.png";
+		suit = "spades.png";
+		cardNumI = new EZText[4][13];
+		
+		for(int i=0; i<1; i++) {
+			for(int j=0; j<13; j++) {
+				cardImage[i][j] = EZ.addImage(suit, 100, 100);
+				cardNumI[i][j] = EZ.addText(100, 100, num, Color.black, 50);
+			}
+		}
+	}
+	*/
+	
+	
+	void makeDeckImage() {
+		deckImage = new CardImage[4][13];
+		for(int s=0; s<4; s++) {
+			for(int c=0; c<13; c++) {
+				deckImage[s][c] = new CardImage(s+1,c+1);
+			}
+		}
+	}
+	void hideDeckImage() {
+		for(int s=0; s<4; s++) {
+			for(int c=0; c<13; c++) {
+				deckImage[s][c].hideCardImage();
+			}
+		}
+	}
+	public void makeFaceDown() {
+		for(int i=0; i<5; i++) {
+			facedown[i] = EZ.addImage("facedowncard.png",-2000,-2000);
+		}
+	}
+	public void moveFaceDownFCD() {
+		for(int i=0; i<5; i++) {
+			facedown[i].translateTo(175+i*205,300);
+		}
+	}
+	public void moveFaceDownBJ() {
+		facedown[0].translateTo(175, 305);
+		}
+	public void hideFaceDown() {
+		for(int i=0; i<5; i++) {
+			facedown[i].translateTo(-2000,-2000);
+		}
 	}
 	
 	

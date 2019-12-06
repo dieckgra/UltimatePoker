@@ -1,9 +1,9 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-
+//tabalbar@hawaii.edu
 public class Setting {
-	EZText textSon, textSoff, textMon, textMoff, cardText;
-	EZImage boxSon, boxSoff, boxMon, boxMoff;
+	EZText textSon, textSoff, textMon, textMoff, cardText; // text sound on and off, text music on and off, explain card backgrounds
+	EZImage boxSon, boxSoff, boxMon, boxMoff; // box sound on and off, box music on and off
 	String blueBack, redBack, hearthStone, ignite;
 	EZImage blueBackI, redBackI, hearthStoneI, igniteI;
 	EZImage soundCheck, musicCheck, cardCheck;
@@ -11,7 +11,7 @@ public class Setting {
 	EZImage ruleButton, backButton, quitButton;
 	boolean soundOn, musicOn, escape;
 	int cardSel;
-	//hearthstone, facedowncard, tallyho, ignite
+	EZSound guitar = EZ.addSound("bensound-happyrock.wav");
 	
 	Setting() {
 		// Make the sound option
@@ -41,7 +41,7 @@ public class Setting {
 		redBackI = EZ.addImage(redBack, -2000, -2000);
 		hearthStoneI = EZ.addImage(hearthStone, -2000, -2000);
 		igniteI = EZ.addImage(ignite, -2000, -2000);
-		cardCheck = EZ.addImage("greencheck.png", -2000, -2000);
+		cardCheck = EZ.addImage("greencheck2.png", -2000, -2000);
 		cardSel = 1;
 		// Rules
 		ruleRect = EZ.addRectangle(-2000, -2000, 425, 200, Color.black, true);
@@ -73,20 +73,11 @@ public class Setting {
 		hearthStoneI.translateTo(733, 650);
 		igniteI.translateTo(1000, 650);
 		switch(cardSel) {
-			case 1:
-				cardCheck.translateTo(blueBackI.getXCenter(), blueBackI.getYCenter());
-				break;
-			case 2:
-				cardCheck.translateTo(redBackI.getXCenter(), redBackI.getYCenter());
-				break;
-			case 3:
-				cardCheck.translateTo(hearthStoneI.getXCenter(), hearthStoneI.getYCenter());
-				break;
-			case 4:
-				cardCheck.translateTo(igniteI.getXCenter(), igniteI.getYCenter());
-				break;
-			default:
-				cardCheck.translateTo(-2000, -2000);
+			case 1: cardCheck.translateTo(blueBackI.getXCenter(), blueBackI.getYCenter()); break;
+			case 2: cardCheck.translateTo(redBackI.getXCenter(), redBackI.getYCenter()); break;
+			case 3: cardCheck.translateTo(hearthStoneI.getXCenter(), hearthStoneI.getYCenter()); break;
+			case 4: cardCheck.translateTo(igniteI.getXCenter(), igniteI.getYCenter()); break;
+			default: cardCheck.translateTo(-2000, -2000);
 		}
 		ruleRect.translateTo(600, 310);
 		ruleButton.translateTo(600, 310);
@@ -105,7 +96,7 @@ public class Setting {
 			clickY = EZInteraction.getYMouse();
 			  
 			if (EZInteraction.wasMouseLeftButtonPressed()) {
-				  
+				// Clicking the sound
 				if ((textSon.isPointInElement(clickX,clickY)) || (boxSon.isPointInElement(clickX,clickY))) {
 					soundCheck.translateTo(boxSon.getXCenter(), boxSon.getYCenter());
 					soundOn = true;
@@ -114,15 +105,18 @@ public class Setting {
 					soundCheck.translateTo(boxSoff.getXCenter(), boxSoff.getYCenter());
 					soundOn = false;
 				}
+				// Clicking the music
 				else if ((textMon.isPointInElement(clickX,clickY)) || (boxMon.isPointInElement(clickX,clickY))) {
 					musicCheck.translateTo(boxMon.getXCenter(), boxMon.getYCenter());
 					musicOn = true;
+					guitar.loop();
 				}
 				else if ((textMoff.isPointInElement(clickX, clickY)) || (boxMoff.isPointInElement(clickX, clickY))) {
 					musicCheck.translateTo(boxMoff.getXCenter(), boxMoff.getYCenter());
 					musicOn = false;
+					guitar.stop();
 				}
-				
+				// Clicking the card image
 				else if (blueBackI.isPointInElement(clickX,clickY)) {
 					cardCheck.translateTo(blueBackI.getXCenter(), blueBackI.getYCenter());
 					cardSel = 1;
@@ -140,15 +134,15 @@ public class Setting {
 					cardSel = 4;
 				}
 				else if((ruleButton.isPointInElement(clickX, clickY)) || (ruleRect.isPointInElement(clickX, clickY))) {
-					System.out.print("You have pressed the rule button");
+					System.out.println("You have pressed the rule button");
 				}
 				else if(quitButton.isPointInElement(clickX,  clickY)) {
 					System.exit(0);
 				}
 			}
-			if(EZInteraction.wasKeyPressed(KeyEvent.VK_SPACE)) {
-				escape = true;
-			}
+			//if(EZInteraction.wasKeyPressed(KeyEvent.VK_SPACE)) {
+			//	escape = true;
+			//}
 			if(EZInteraction.wasMouseLeftButtonPressed()) {
 				 if (backButton.isPointInElement(clickX, clickY)) {
 					 escape = true;
@@ -172,7 +166,7 @@ public class Setting {
 		boxMon.translateTo(-2000, -2000);
 		boxMoff.translateTo(-2000, -2000);
 		musicCheck.translateTo(-2000, -2000);
-		// Hide the card back option
+		// Hide the card background option
 		cardText.translateTo(-2000, -2000);
 		blueBackI.translateTo(-2000, -2000);
 		redBackI.translateTo(-2000, -2000);
@@ -184,7 +178,19 @@ public class Setting {
 		ruleButton.translateTo(-2000, -2000);
 		backButton.translateTo(-2000, -2000);
 		quitButton.translateTo(-2000, -2000);
-		
+		escape = true;
+	}
+	//hearthstone, facedowncard, tallyho, ignite
+	public String getCardSel() {
+		String cardString;
+		switch(cardSel) {
+			case 1: cardString = "facedowncard.png"; break;
+			case 2: cardString = "tallyho.png"; break;
+			case 3: cardString = "hearthstone.png"; break;
+			case 4: cardString = "ignite.png"; break;
+			default: cardString = "discardIcon.png";
+		}
+		return cardString;
 	}
 
 }

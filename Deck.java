@@ -143,9 +143,13 @@ public class Deck {
 			}
 		}
 	}
-	public void makeFaceDown() {
+	public void makeFaceDown(String image) {
 		for(int i=0; i<5; i++) {
-			facedown[i] = EZ.addImage("facedowncard.png",-2000,-2000);
+			if(true) {
+				facedown[i] = EZ.addImage(image,-2000,-2000);
+			} //else if(true) {
+				//facedown[i] = setting.redBackI;
+			//}
 		}
 	}
 	public void moveFaceDownFCD() {

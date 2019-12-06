@@ -8,11 +8,13 @@ public class Menu extends GameGUI {
 	//text.setFont("8-BIT WONDER.TTF");
 	static EZImage Bj, FCD, SCS, TH, setting, quit, backgroundPicture;
 	Color gold, white;
-	boolean playingFCD, playingBJ, playingSCS, playingTH;
+	boolean playingFCD, playingBJ, playingSCS, playingTH, soundOn;
 	static boolean settingsOpenned = false;
 	Setting settings;
 	int clickX;
 	int clickY;
+	EZSound winning, losing, coin, floop;
+	String cardSel; // need a way to pass back of card through to other games/screens
 	
 		Menu() {
 			
@@ -30,7 +32,13 @@ public class Menu extends GameGUI {
 			subtitle = EZ.addText(600, 125, "", gold, 75);
 			subtitle.setFont("Amaranth-Regular.ttf");
 			
+			FiveCardDrawGUI fcdGUI = new FiveCardDrawGUI();
 			settings = new Setting();
+			
+			winning = EZ.addSound("applause.wav");
+			losing = EZ.addSound("boo.wav");
+			coin = EZ.addSound("coin.wav");
+			floop = EZ.addSound("floop.wav");
 			
 			//icon names for the buttons images below
 			blackjack = EZ.addText(460, 355, "Black Jack", Color.white, 25);
@@ -50,14 +58,17 @@ public class Menu extends GameGUI {
 			
 			
 			deck1.makeDeckImage();
-			deck1.makeFaceDown();
+			//deck1.makeFaceDown(settings.getCardSel());
 			
 			//clickX=0;
 			//clickY=0;
 			
 			while(true) {
 				
-				// Get the mouseʻs X and Y position
+				cardSel = settings.getCardSel(); // make the cardSel variable equal to the card we selected in the menu
+				soundOn = settings.soundOn; // make the soundOn data able to be passed through the menu
+				
+				// Get the mouse's X and Y position
 				clickX = EZInteraction.getXMouse();
 				clickY = EZInteraction.getYMouse();
 				
@@ -68,7 +79,6 @@ public class Menu extends GameGUI {
 						hideMenuStuff();
 						setGame("Black Jack");
 						System.out.println("Black Jack button was pressed...");
-						MainClass.gameSelection.equals("1");
 					}
 					// If click X and clickY is on my second picture....
 					if ((FCD.isPointInElement(clickX, clickY)) || (fivecarddraw.isPointInElement(clickX, clickY))) {			    	  
@@ -78,8 +88,8 @@ public class Menu extends GameGUI {
 						
 						// Launch the game
 						playingFCD = true;
-						deck1.moveFaceDownFCD();
-						FiveCardDrawGUI fcdGUI = new FiveCardDrawGUI();
+						
+						fcdGUI.fiveCardDrawGUI();
 					}
 					if ((SCS.isPointInElement(clickX,  clickY)) || (sevencardstud.isPointInElement(clickX, clickY))) {
 						//MainClass.gameSelection = 3;
@@ -118,6 +128,7 @@ public class Menu extends GameGUI {
 						settings.hideSettingStuff();
 					}
 					showMenuStuff(); 
+					settings.hideSettingStuff();
 				}
 				EZ.refreshScreen();
 			}
@@ -168,5 +179,9 @@ public class Menu extends GameGUI {
 	    	
 	    	System.out.println("Hiding the menu...");
 		}
+		
+		//static void cardChanger() {
+		//	deck1
+		//}
 		
 }

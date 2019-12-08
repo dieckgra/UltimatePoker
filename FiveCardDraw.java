@@ -84,7 +84,7 @@ public class FiveCardDraw extends Game {
 		match03 = false; if(hand.get(0).cardNum == hand.get(3).cardNum) { match03 = true; }
 		match14 = false; if(hand.get(1).cardNum == hand.get(4).cardNum) { match14 = true; }
 		// This will identify any five of a kinds (as cards are sorted, but impossible without a joker/wild card or multiple decks)
-		match05 = false; if(hand.get(0).cardNum == hand.get(5).cardNum) { match05 = true; }
+		match05 = false; if(hand.get(0).cardNum == hand.get(4).cardNum) { match05 = true; }
 		
 		// This is IMPOSSIBLE without a joker/wild card or multiple decks... 5 of a kind
 		hasFiveKind = false;
@@ -123,7 +123,7 @@ public class FiveCardDraw extends Game {
 		
 	}
 
-	public void DDS(Hand hand) { // DSS stands for Dealer Decision System
+	public void DDS(Hand hand, int dp) { // DSS stands for Dealer Decision System
 
 		/* Now we must handle the dealer's cards and make it smart
 		 * 
@@ -136,9 +136,9 @@ public class FiveCardDraw extends Game {
 		 * 5. Otherwise keep the two highest cards and discard the other 3.
 		 * 
 		 */
-		
+		deckPosition = dp;
 		// DEALER DECISION SYSTEM
-		if(hand == dealerHand) {
+		//if(hand == dealerHand) {
 			// If the dealer already has a good to great hand
 			if(hasRoyalFlush==true || hasStraightFlush==true || hasFlush==true || hasStraight==true || hasFiveKind==true || hasFullHouse==true) {
 				// Do not discard any cards.  These hands are all desirable and it would be stupid to give up.
@@ -343,11 +343,10 @@ public class FiveCardDraw extends Game {
 				hand.set(1, deck1.deck[deckPosition]); deckPosition++;
 				hand.set(2, deck1.deck[deckPosition]); deckPosition++;
 			}
-		}
-		
+		//}
 	}
 	
-	public void scoring(Hand hand) { // Score based on value of the hand plus high cards
+	public int scoring(Hand hand) { // Score based on value of the hand plus high cards
 
 		/*
 		 * NOW WE SET UP OUR SCORING SYSTEM
@@ -510,8 +509,8 @@ public class FiveCardDraw extends Game {
 		if(hand==dealerHand) { dealerPoints = handPoints; }
 		if(hand==playerHand) { playerPoints = handPoints; }
 		
-		System.out.println("Total points: " + handPoints);
-		
+		//System.out.println("Total points: " + handPoints);
+		return handPoints;
 	}
 	
 	public  void fiveCardDraw() {
@@ -582,11 +581,11 @@ public class FiveCardDraw extends Game {
 		for(int i=0; i<5; i++) { playerHand.get(i).print(); }
 		// NOW WE NEED TO ADD IN RULES TO CALCULATE THE USER'S SCORE BASED OFF OF THE CARDS HE/SHE HOLDS
 		rules(playerHand);
-		scoring(playerHand);
+		System.out.println("Total points: " + scoring(playerHand));
 		// After the dealer has his hand, we check the rules so the dealer can back up its decision
 		rules(dealerHand);
 		// Based on the rules above and the dealer Decision System run below, the dealer will make smart decisions
-		DDS(dealerHand);
+		DDS(dealerHand, deckPosition);
 		// Sort the dealers cards after its decision
 		sortFiveCards(dealerHand);
 		
@@ -595,7 +594,7 @@ public class FiveCardDraw extends Game {
 		for(int i=0; i<5; i++) { dealerHand.get(i).print(); }
 		// We need to check the rules one more time to see what hand the dealer has before scoring
 		rules(dealerHand);
-		scoring(dealerHand);
+		System.out.println("Total points: " + scoring(dealerHand));
 		
 		if(dealerPoints>playerPoints) { System.out.println("Dealer Wins!"); }
 		else if(dealerPoints==playerPoints) { System.out.println("Player1 and Dealer have Tied!"); }

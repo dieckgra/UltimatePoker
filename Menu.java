@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 public class Menu extends GameGUI {
 	public Deck deck1 = new Deck();
 	//set parameters and add the images
-	static EZText title, subtitle, fivecarddraw, blackjack, texasholdem, sevencardstud, settingT, quitT;
+	static EZText title, subtitle, fivecarddraw, blackjack, texasholdem, sevencardstud, settingT, quitT, notYet;
 	//text.setFont("8-BIT WONDER.TTF");
 	static EZImage Bj, FCD, SCS, TH, setting, quit, backgroundPicture;
 	Color gold, white;
@@ -42,11 +42,17 @@ public class Menu extends GameGUI {
 			
 			//icon names for the buttons images below
 			blackjack = EZ.addText(460, 355, "Black Jack", Color.white, 25);
+			blackjack.setFont("Amaranth-Regular.ttf");
 			fivecarddraw = EZ.addText(280, 560, "5 Card Draw", Color.white, 25);
+			fivecarddraw.setFont("Amaranth-Regular.ttf");
 			sevencardstud = EZ.addText(910, 560, "7 Card Stud", Color.white, 25);
+			sevencardstud.setFont("Amaranth-Regular.ttf");
 			texasholdem = EZ.addText(730, 355, "Texas Hold'em", Color.white, 25);
+			texasholdem.setFont("Amaranth-Regular.ttf");
 			settingT = EZ.addText(460, 730, "Settings/Rules", Color.white, 25);
+			settingT.setFont("Amaranth-Regular.ttf");
 			quitT = EZ.addText(730, 730, "Quit Game", Color.white, 25);
+			quitT.setFont("Amaranth-Regular.ttf");
 			
 			// Button Images
 			Bj = EZ.addImage("blackjackFinal.png",460,280);
@@ -56,6 +62,8 @@ public class Menu extends GameGUI {
 			setting = EZ.addImage("settingsfinal.png", 460, 660);
 			quit = EZ.addImage("exitFinal.png", 730, 660);
 			
+			notYet = EZ.addText(600, 400, "", white, 40);
+			notYet.setFont("Amaranth-Regular.ttf");
 			
 			deck1.makeDeckImage();
 			//deck1.makeFaceDown(settings.getCardSel());
@@ -76,6 +84,7 @@ public class Menu extends GameGUI {
 					// If clickX and clickY is on top of my picture then...
 					if ((Bj.isPointInElement(clickX, clickY)) || (blackjack.isPointInElement(clickX, clickY))) {		    	  
 						//MainClass.gameSelection.equals("1");
+						if (soundOn == true) { MainClass.menu.floop.play(); }
 						hideMenuStuff();
 						setGame("Black Jack");
 						System.out.println("Black Jack button was pressed...");
@@ -83,28 +92,36 @@ public class Menu extends GameGUI {
 					// If click X and clickY is on my second picture....
 					if ((FCD.isPointInElement(clickX, clickY)) || (fivecarddraw.isPointInElement(clickX, clickY))) {			    	  
 						//MainClass.gameSelection = 2;
+						if (soundOn == true) { MainClass.menu.floop.play(); }
 						hideMenuStuff();
 						setGame("5 Card Draw");
 						
 						// Launch the game
 						playingFCD = true;
-						
+						fcdGUI.playAgain = true;
 						fcdGUI.fiveCardDrawGUI();
 					}
 					if ((SCS.isPointInElement(clickX,  clickY)) || (sevencardstud.isPointInElement(clickX, clickY))) {
 						//MainClass.gameSelection = 3;
+						if (soundOn == true) { MainClass.menu.losing.play(); }
 						hideMenuStuff();
 						setGame("7 Card Stud");
 						System.out.println("Seven Card Stud button was pressed...");
+						System.out.println("THIS GAME IS NOT AVAILABLE UNTIL 2020!");
+						notYet.setMsg("THIS GAME IS NOT AVAILABLE UNTIL 2020! Press space to go back...");
 					}		
 					if ((TH.isPointInElement(clickX,  clickY)) || (texasholdem.isPointInElement(clickX, clickY))) {
 						//MainClass.gameSelection = 4;
+						if (soundOn == true) { MainClass.menu.losing.play(); }
 						hideMenuStuff();
 						setGame("Texas Hold\'em");
 						System.out.println("Texas Hold\'em button was pressed...");
+						System.out.println("THIS GAME IS NOT AVAILABLE UNTIL 2020!");
+						notYet.setMsg("THIS GAME IS NOT AVAILABLE UNTIL 2020! Press space to go back...");
 					}
 					if ((setting.isPointInElement(clickX,  clickY)) || (settingT.isPointInElement(clickX, clickY))) {
 						//MainClass.gameSelection = 6;
+						if (soundOn == true) { MainClass.menu.floop.play(); }
 						hideMenuStuff();
 						setGame("Settings");
 						System.out.println("Setting button was pressed...");
@@ -113,11 +130,13 @@ public class Menu extends GameGUI {
 					}
 					if ((quit.isPointInElement(clickX,  clickY)) || (quitT.isPointInElement(clickX, clickY))) {
 						//MainClass.gameSelection = 0;
+						if (soundOn == true) { MainClass.menu.floop.play(); }
 						System.out.println("The Quit Button was pressed... Quiting Now!");
 						System.exit(0);
 					}
 				}
 				if(EZInteraction.wasKeyReleased(KeyEvent.VK_SPACE)) { 
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 					if(playingFCD == true) {
 						playingFCD = false;
 						deck1.hideFaceDown();
@@ -127,6 +146,7 @@ public class Menu extends GameGUI {
 						settingsOpenned = false;
 						settings.hideSettingStuff();
 					}
+					notYet.setMsg("");
 					showMenuStuff(); 
 					settings.hideSettingStuff();
 				}

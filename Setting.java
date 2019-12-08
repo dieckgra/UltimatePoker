@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 //tabalbar@hawaii.edu
 public class Setting {
-	EZText textSon, textSoff, textMon, textMoff, cardText; // text sound on and off, text music on and off, explain card backgrounds
+	EZText textSon, textSoff, textMon, textMoff, cardText, warning; // text sound on and off, text music on and off, explain card backgrounds, warning regarding instructions
 	EZImage boxSon, boxSoff, boxMon, boxMoff; // box sound on and off, box music on and off
 	String blueBack, redBack, hearthStone, ignite;
 	EZImage blueBackI, redBackI, hearthStoneI, igniteI;
@@ -15,6 +15,8 @@ public class Setting {
 	
 	Setting() {
 		// Make the sound option
+		warning = EZ.addText(-2000, -2000, "Refer to the instructions in the terminal/console. You must press 0 in the console to exit the instructions before continuing in the GUI.", Color.white, 20);
+		warning.setFont("amaranth-regular.ttf");
 		textSon = EZ.addText(-2000, -2000, "Sound on", Color.white, 50);
 		textSon.setFont("amaranth-regular.ttf");
 		textSoff = EZ.addText(-2000, -2000, "Sound off", Color.white, 50);
@@ -100,51 +102,67 @@ public class Setting {
 				if ((textSon.isPointInElement(clickX,clickY)) || (boxSon.isPointInElement(clickX,clickY))) {
 					soundCheck.translateTo(boxSon.getXCenter(), boxSon.getYCenter());
 					soundOn = true;
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 				}
 				else if ((textSoff.isPointInElement(clickX, clickY)) || (boxSoff.isPointInElement(clickX, clickY))) {
 					soundCheck.translateTo(boxSoff.getXCenter(), boxSoff.getYCenter());
 					soundOn = false;
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 				}
 				// Clicking the music
 				else if ((textMon.isPointInElement(clickX,clickY)) || (boxMon.isPointInElement(clickX,clickY))) {
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 					musicCheck.translateTo(boxMon.getXCenter(), boxMon.getYCenter());
 					musicOn = true;
 					guitar.loop();
 				}
 				else if ((textMoff.isPointInElement(clickX, clickY)) || (boxMoff.isPointInElement(clickX, clickY))) {
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 					musicCheck.translateTo(boxMoff.getXCenter(), boxMoff.getYCenter());
 					musicOn = false;
 					guitar.stop();
 				}
-				// Clicking the card image
+				// Clicking the card background images
 				else if (blueBackI.isPointInElement(clickX,clickY)) {
+					if (soundOn == true) { MainClass.menu.coin.play(); }
 					cardCheck.translateTo(blueBackI.getXCenter(), blueBackI.getYCenter());
 					cardSel = 1;
 				}
 				else if (redBackI.isPointInElement(clickX,clickY)) {
+					if (soundOn == true) { MainClass.menu.coin.play(); }
 					cardCheck.translateTo(redBackI.getXCenter(), redBackI.getYCenter());
 					cardSel = 2;
 				}
 				else if (hearthStoneI.isPointInElement(clickX,clickY)) {
+					if (soundOn == true) { MainClass.menu.coin.play(); }
 					cardCheck.translateTo(hearthStoneI.getXCenter(), hearthStoneI.getYCenter());
 					cardSel = 3;
 				}
 				else if (igniteI.isPointInElement(clickX,clickY)) {
+					if (soundOn == true) { MainClass.menu.coin.play(); }
 					cardCheck.translateTo(igniteI.getXCenter(), igniteI.getYCenter());
 					cardSel = 4;
 				}
+				// Clicking the rule button
 				else if((ruleButton.isPointInElement(clickX, clickY)) || (ruleRect.isPointInElement(clickX, clickY))) {
-					System.out.println("You have pressed the rule button");
+					if (soundOn == true) { MainClass.menu.floop.play(); }
+					System.out.println("YOU HAVE PRESSED THE RULE BUTTON");
+					warning.translateTo(600, 185);
+					Instructions rules = new Instructions();
+					warning.translateTo(-2000, -2000);
+					
+					
 				}
+				// Clicking the quit button
 				else if(quitButton.isPointInElement(clickX,  clickY)) {
+					if (soundOn == true) { MainClass.menu.floop.play(); }
 					System.exit(0);
 				}
 			}
-			//if(EZInteraction.wasKeyPressed(KeyEvent.VK_SPACE)) {
-			//	escape = true;
-			//}
+			// Clicking the back button
 			if(EZInteraction.wasMouseLeftButtonPressed()) {
 				 if (backButton.isPointInElement(clickX, clickY)) {
+					 if (soundOn == true) { MainClass.menu.floop.play(); }
 					 escape = true;
 					 hideSettingStuff();
 					 Menu.showMenuStuff();

@@ -16,11 +16,11 @@ Once you've read up on the games and/or changed the settings to your liking, cli
 
 #CREDIT, VERSION NOTES, ETC:
 
-We are currently in version 1 (essentially, it looks like it is under construction and only half the games are available).  You can still play Five Card Draw, and possibly Black Jack if my team mates actually finish it in time... (let's find out if they actually read this and are paying attention.  Jordan and Liam, if either of you are reading this, send me a text and and let me know.)
+We are currently in version 1 (essentially, it looks like it is under construction and only half the games are available).  You can still play Five Card Draw and Black Jack.
 
 If you are hoping to play Seven Card Stud and/or Texas Hold'em, you will have to wait till 2020 when I have the time to make them.
 
-I (Douglas Dieckgraefe) built pretty much everything.  I built the framework for the whole program (including text-based black jack) allowing everything to originally run in a console or terminal (or cmd window if you are on a Windows OS).  My two teammates then made the menu page and kind of tried to make the settings.  I only slightly had to edit the menu (add functionality to the buttons, etc.), but I had to basically redo and add most of the features in settings.  I built the GUI Five Card Draw game as well.  
+I (Douglas Dieckgraefe) built pretty much everything.  I built the framework for the whole program (including text-based black jack) allowing everything to originally run in a console or terminal (or cmd window if you are on a Windows OS).  My two teammates then made the menu page and kind of tried to make the settings.  I only slightly had to edit the menu (add functionality to the buttons, etc.), but I also had to add some of the features in settings.  I built the GUI Five Card Draw game as well.  
 
 Jordan Cooper can receive credit for the Menu class, Liam Tsamous can receive credit for the Setting class, and they can both receive credit for the BlackJackGUI class.  I accept credit for literally everything else.  
 
@@ -28,6 +28,6 @@ If you are someone looking for a fun game to play, I hope you enjoy!  Don't judg
 
 If you are someone who is Java savvy, again, don't judge too hard.  I know the code is messy.  I worked with a couple noobs in this project and I myself am not a pro either.  I will be cleaning up the code in 2020 as I update the program, add the other two games, and add more features.  Look out for version 2 and hopefully you will see the improvement.
 
-I must also give credit to Jason Leigh, the University of Hawaii professor who not only got me started on Java, but also gets credit for the shuffle and text-based dealing functions for a deck of 52 cards (this counts of a portion of the code in the Card class).  
+I must also give credit to Jason Leigh, the University of Hawaii professor who not only got me started on Java, but also gets credit for the shuffle and text-based dealing functions for a deck of 52 cards (this counts for a portion of the code in the Card class and the Deck class).  
 
 

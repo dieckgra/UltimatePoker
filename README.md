@@ -20,9 +20,7 @@ We are currently in version 1 (essentially, it looks like it is under constructi
 
 If you are hoping to play Seven Card Stud and/or Texas Hold'em, you will have to wait till 2020 when I have the time to make them.
 
-I (Douglas Dieckgraefe) built pretty much everything.  I built the framework for the whole program (including text-based black jack) allowing everything to originally run in a console or terminal (or cmd window if you are on a Windows OS).  My two teammates then made the menu page and kind of tried to make the settings.  I only slightly had to edit the menu (add functionality to the buttons, etc.), but I also had to add some of the features in settings.  I built the GUI Five Card Draw game as well.  
-
-Jordan Cooper can receive credit for the Menu class, Liam Tsamous can receive credit for the Setting class, and they can both receive credit for the BlackJackGUI class.  I accept credit for literally everything else.  
+I (Douglas Dieckgraefe) built pretty much everything.  I built the framework for the whole program (including text-based black jack) allowing everything to originally run in a console or terminal (or cmd window if you are on a Windows OS).  I then recruited my two teammates who then made the menu page and part of the settings.  I only slightly had to edit the menu (add functionality to the buttons, etc.), but I also had to add some of the features in settings.  I built the GUI Five Card Draw game as well. Jordan Cooper receives credit for the Menu class, Liam Tsamous receives credit for the Setting class, and they both receive credit for the BlackJackGUI class.  I accept credit for everything else.  
 
 If you are someone looking for a fun game to play, I hope you enjoy!  Don't judge too hard, I will be adding more features 2020 like betting pots, multiple players, and more.  
 

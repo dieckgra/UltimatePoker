@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+//Made by Douglas Dieckgraefe
 public class CardImage extends Card {
 	CardImage(int c, int s) {
 		super(c,s);

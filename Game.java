@@ -1,4 +1,4 @@
-
+// Made by Douglas Dieckgraefe
 public class Game {
 	static Hand playerHand;
 	static Hand dealerHand;

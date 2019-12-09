@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+//Made by Douglas Dieckgraefe
 public class FiveCardDrawGUI extends GameGUI {
 
 	boolean escape, soundOn;

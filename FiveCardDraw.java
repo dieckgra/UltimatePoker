@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+// Made by Douglas Dieckgraefe
 public class FiveCardDraw extends Game {
 	
 	static Scanner scanner = new Scanner(System.in);
@@ -535,10 +535,20 @@ public class FiveCardDraw extends Game {
 		sortFiveCards(playerHand);
 		sortFiveCards(dealerHand);
 		
-		System.out.println("\n\nPlayer Hand: ");
-		for(int i=0; i<5; i++) { playerHand.get(i).print(); }
-		System.out.println("\nDealer Hand: ");
-		for(int i=0; i<5; i++) { dealerHand.get(i).print(); }
+		System.out.println("Would you like to peak? (This is technically cheating)\nType \"yes\" to cheat or anything else to play fair.");
+		String cheat = scanner.next();
+		if(cheat.equalsIgnoreCase("yes")) {
+			System.out.println("\n\nPlayer Hand: ");
+			for(int i=0; i<5; i++) { playerHand.get(i).print(); }
+			System.out.println("\nDealer Hand: ");
+			for(int i=0; i<5; i++) { dealerHand.get(i).print(); }
+		}
+		else {
+			System.out.println("\n\nPlayer Hand: ");
+			for(int i=0; i<5; i++) { playerHand.get(i).print(); }
+			System.out.println("\nDealer Hand: ");
+			for(int i=0; i<5; i++) { System.out.println("[[[Face Down Card]]]"); }
+		}
 		
 
 		

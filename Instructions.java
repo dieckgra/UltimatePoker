@@ -1,4 +1,5 @@
 import java.util.Scanner;
+//Made by Douglas Dieckgraefe
 public class Instructions {
 	Scanner scanner = new Scanner(System.in);
 	String whichInstructions;

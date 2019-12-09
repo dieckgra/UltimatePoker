@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+//Made by Douglas Dieckgraefe, but credit goes to Jason Leigh for the card printing function and the first constructor
 public class Card {
 	
 	// Member variables

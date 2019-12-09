@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//Made by Douglas Dieckgraefe
 public class TexasHoldem extends Game {
 	static Scanner scanner = new Scanner(System.in);
 	

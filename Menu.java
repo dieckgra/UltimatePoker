@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-
+//Made by made by Jordan Cooper
 public class Menu extends GameGUI {
 	public Deck deck1 = new Deck();
 	//set parameters and add the images
@@ -33,6 +33,7 @@ public class Menu extends GameGUI {
 			subtitle.setFont("Amaranth-Regular.ttf");
 			
 			FiveCardDrawGUI fcdGUI = new FiveCardDrawGUI();
+			BlackJackGUI bjGUI = new BlackJackGUI();
 			settings = new Setting();
 			
 			winning = EZ.addSound("applause.wav");
@@ -88,6 +89,9 @@ public class Menu extends GameGUI {
 						hideMenuStuff();
 						setGame("Black Jack");
 						System.out.println("Black Jack button was pressed...");
+						bjGUI.playAgain = true;
+						bjGUI.blackJackGUI();
+						
 					}
 					// If click X and clickY is on my second picture....
 					if ((FCD.isPointInElement(clickX, clickY)) || (fivecarddraw.isPointInElement(clickX, clickY))) {			    	  

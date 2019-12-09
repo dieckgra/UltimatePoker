@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+//Made by Douglas Dieckgraefe
 
 public class MainClass {
 	static Scanner scanner = new Scanner(System.in);
@@ -24,8 +24,8 @@ public class MainClass {
 		
 		// Currently only offer Black Jack (1), partial 5-card draw (2) or quit (0)
 		while(true) {
-			System.out.println("\nPlayer 1...\nType 1 to play Black Jack? \nType 2 to play Five Card Draw\ntype 3 to play Seven Card Stud\nType 4 to play Texas Hold\'em\n"
-					+ "Type 5 for the GUI menu\nType 6 for Settings\nType 7 for Instructions on How to Play\nType 0 to Quit");
+			System.out.println("\nPlayer 1...\nType 1 to play Black Jack \nType 2 to play Five Card Draw\ntype 3 to play Seven Card Stud\nType 4 to play Texas Hold\'em\n"
+					+ "Type 5 for the GUI Menu/Graphical User Interface Version of the Game\nType 6 for Settings\nType 7 for Instructions on How to Play\nType 0 to Quit");
 			gameSelection = scanner.nextLine();
 			// 0 quits the program, 1 is black jack, 2 is 5-card poker, 3 is 7-card stud, 4 is Texas Hold'em, etc...
 			if(gameSelection.equals("0")) { System.exit(0); }
@@ -34,6 +34,7 @@ public class MainClass {
 				while(true) {
 					deck1.shuffle(); 
 					BlackJack bj = new BlackJack(); 
+					bj.blackJack();
 					while(true) {
 						System.out.println("would you like to play again, go to menu or quit? \nType \"p\" for play again, \"m\" for menu, or \"q\" for quit...");
 						String playAgain = scanner.next();
@@ -66,12 +67,12 @@ public class MainClass {
 			
 			else if(gameSelection.equals("5")) { 
 				/* The tester GUI Menu will launch from selection 5 */ 
-				System.out.println("GUI Menu"); 
+				System.out.println("GUI Menu/Graphical User Interface Version of the Game"); 
 				menu = new Menu(); 
 				menu.callMenu();
 			} 
 			
-			else if(gameSelection.equals("6")) { System.out.println("Settings will be available soon"); }
+			else if(gameSelection.equals("6")) { System.out.println("Settings are only available for the GUI at this time..."); }
 			else if(gameSelection.equals("7")) { Instructions instructions = new Instructions(); }
 			else { System.out.println("That is not a valid option."); } 
 		}

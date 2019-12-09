@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.util.Random;
-
+//Made by Douglas Dieckgraefe, but credit goes to Jason Leigh for the constructor and the shuffling and printing functions
 public class Deck {
 	Card[] deck; // Make an array of cards called deck
 	
@@ -157,6 +157,9 @@ public class Deck {
 			facedown[i].translateTo(175+i*205,300);
 		}
 	}
+	public void moveFaceDownBJ() {
+		facedown[0].translateTo(175, 305);
+		}
 	public void hideFaceDown() {
 		for(int i=0; i<5; i++) {
 			facedown[i].translateTo(-2000,-2000);

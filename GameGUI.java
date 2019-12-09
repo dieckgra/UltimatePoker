@@ -1,5 +1,5 @@
 import java.awt.Color;
-
+//Made by Douglas Dieckgraefe
 public class GameGUI {
 	static Hand playerHand;
 	static Hand dealerHand;

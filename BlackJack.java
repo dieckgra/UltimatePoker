@@ -1,12 +1,12 @@
 import java.util.*;
-
+//Made by Douglas Dieckgraefe
 public class BlackJack extends Game {
 	
 	static Scanner scanner = new Scanner(System.in);
 	
 	BlackJack() {
 		super();
-		blackJack();
+		//blackJack();
 	}
 	
 	public static void dealBlackJackFirst() {
@@ -117,7 +117,7 @@ public class BlackJack extends Game {
 					}
 					System.out.println("Total is: " + dealerHandSum);
 					if(dealerHandSum>21) { System.out.println("\nBUST!\nPlayer Wins!"); break; }
-					if(dealerHandSum>=playerHandSum) { System.out.println("\nDealer Wins!"); break; } 
+					else if(dealerHandSum>=playerHandSum) { System.out.println("\nDealer Wins!"); break; } 
 					else { System.out.println("\nPlayer Wins!"); break; }
 					
 				} else { System.out.println("That was not a valid entry... Try again."); }

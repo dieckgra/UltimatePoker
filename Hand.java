@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//Made by Douglas Dieckgraefe
 public class Hand {
 	String name = "";
 	public ArrayList<Card> hand;

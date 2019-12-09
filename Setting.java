@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-//tabalbar@hawaii.edu
+//Made by Liam Tsamous
 public class Setting {
 	EZText textSon, textSoff, textMon, textMoff, cardText, warning; // text sound on and off, text music on and off, explain card backgrounds, warning regarding instructions
 	EZImage boxSon, boxSoff, boxMon, boxMoff; // box sound on and off, box music on and off
